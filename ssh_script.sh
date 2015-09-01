@@ -1,32 +1,52 @@
 #!/bin/bash
 ##ssh_script
 clear;
-find ~/.ssh | grep id_rsa.pub &> ~/Documents/temp_ssh_area.txt;
+find ~/.ssh/id_rsa.pub &> ~/Documents/temp_ssh_area.txt;
 echo "looked to see if I could find the ssh key"; 
 head ~/Documents/temp_ssh_area.txt;
-echo "error or none - lets get this done"; 
-THISSSHISHERE=`head ~/Documents/temp_ssh_area.txt`;
-echo "$THISSSHISHERE";
-echo "now I'm gonna copy your ssh to the clipboard";
-pbcopy < "$THISSSHISHERE";
-echo `pbpaste`;
-##should of echoed the ssh key above 
-echo "okay should be finished - should be able to paste with your paste commands";
-echo "this hasn't been optimized for anything besides mac installs";
-echo "if you have mac and you didn't see anything paste or you had errors";
-echo "you'll need to generate an ssh key";
-echo "until I figure out how to generate said ssh keys via scripting";
-echo "please visit: https://help.github.com/articles/generating-ssh-keys/";
-echo "would you like to go there now?(use y for yes | use n for no)";
-read THE_ANSWER;
-##Starting conditional below 
-if [ "$THE_ANSWER" == "y" ]; then
-open "https://help.github.com/articles/generating-ssh-keys";
-elif [ "$THE_ANSWER" == "n" ]; then
-echo "alrighty suit yourself - exiting";
-exit 1;
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+	echo "no id_rsa.pub ssh found";
+	echo "would you like for me to create an ssh key for you? (use y for yes | use n for no)";
+	read CREATE_ANSWER;
+	if ["$CREATE_ANSWER" == "y"]; then
+		ssh-keygen -t rsa -N "" -f id_rsa.pub
+		echo "ssh key has been generated";
+		echo "now will copy to clipboard";
+		pbcopy < ~/.ssh/id_rsa.pub;
+		echo "has been copied to cliboard and ready to be pasted"
+	elif ["$CREATE_ANSWER" == "n"]; then
+		echo "cool I won't build out an ssh key for you";
+		echo "would you like to get a refresher on how to build them yourself? (use y for yes | use n for no)"
+			if [ "$THE_ANSWER" == "y" ]; then
+			open "https://help.github.com/articles/generating-ssh-keys";
+			elif [ "$THE_ANSWER" == "n" ]; then
+			echo "alrighty suit yourself - exiting";
+			exit 1;
+			else
+			echo "don't understand input";
+			exit 2; 
+			fi
+	else
+		echo "didn't understand input";
+			exit 3;
 else
-echo "don't understand input - plz re run script - exiting";
-exit 2; 
+	echo "looks like you have the key";
+	echo "I will copy it for you to the clipboard for your pasting use";
+	pbcopy < ~/.ssh/id_rsa.pub;
+	echo "has been copied to your clipboard"
 fi
+echo "Google Fonts is awesome - would you like to download and install them all? (use y for yes | use n for no)"
+read FONT_ANSWER;
+if ["$FONT_ANSWER" == "y"]; then
+	echo "okay - building temp directory under your download folder, then download, then I'll remove that folder";
+	mkdir -p ~/Downloads/temp_font;
+	cd ~/Downloads/temp_font;
+	wget --show-progress https://github.com/google/fonts/archive/master.zip;
+	echo "downloaded - will extract now";
+	
+fi
+
+
+
+
 
