@@ -46,18 +46,6 @@ else
 fi
 
 
-echo "Google Fonts is awesome - would you like to download and install them all? (use y for yes | use n for no)";
-read FONT_ANSWER;
-if ["$FONT_ANSWER" == "y"]; then
-	echo "okay - building temp directory under your download folder, then download, then I'll remove that folder";
-	mkdir -p ~/Downloads/temp_font;
-	cd ~/Downloads/temp_font;
-	wget --show-progress https://github.com/google/fonts/archive/master.zip;
-	echo "downloaded - will extract now";
-else
-	echo "something";	
-fi
-
 
 
 
