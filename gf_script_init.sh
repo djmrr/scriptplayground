@@ -28,7 +28,7 @@ if [ "$FONT_ANSWER" == "y" ] || [ "$FONT_ANSWER" == "Y" ] || [ "$FONT_ANSWER" ==
 	cp -rv ~/Downloads/temp_font/master.zip ~/Documents/google_font_tracker/;
 	printf "\n alright time to schedule that cronjob";
 	crontab -l > thiscron;
-	echo "00 15 * * ~/Documents/google_font_tracker/gf_script_update" >> thiscron;
+	echo "00 15 * * 1-5 ~/Documents/google_font_tracker/gf_script_update.sh" >> thiscron;
 	crontab thiscron;
 	rm -v thiscron;
 	printf "\n all set up :) this will check everday at 3pm by default";
