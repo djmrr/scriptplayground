@@ -26,6 +26,12 @@ if [ "$FONT_ANSWER" == "y" ] || [ "$FONT_ANSWER" == "Y" ] || [ "$FONT_ANSWER" ==
 	chmod 750 ~/$MYHOME/gf_script_update.sh;
 	cp -rv $MYHOME/gf_script_update.sh ~/Documents/google_font_tracker/;
 	cp -rv ~/Downloads/temp_font/master.zip ~/Documents/google_font_tracker/;
+	printf "\n alright time to schedule that cronjob";
+	crontab -l > thiscron;
+	echo "00 15 * * ~/Documents/google_font_tracker/gf_script_update" >> thiscron;
+	crontab thiscron;
+	rm -v thiscron;
+	printf "\n all set up :) this will check everday at 3pm by default";
 elif [ "$FONT_ANSWER" == "n" ] || [ "$FONT_ANSWER" == "no" ] || [ "$FONT_ANSWER" == "No" ] || [ "$FONT_ANSWER" == "NO" ]; then
 	printf "\n Thats cool - nvm then hommie";
 else	
