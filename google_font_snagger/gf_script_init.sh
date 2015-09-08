@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # Google font inital setup
 printf "Google Fonts is awesome - would you like to download and install them all? (use y for yes | use n for no)";
 read FONT_ANSWER;
@@ -23,7 +23,7 @@ if [ "$FONT_ANSWER" == "y" ] || [ "$FONT_ANSWER" == "Y" ] || [ "$FONT_ANSWER" ==
 	printf "\n gonna grab some stuff";
 	mkdir -v ~/Documents/google_font_tracker;
 	cp -rv ~/Downloads/temp_font/fonts-master/font_count_inital ~/Documents/google_font_tracker/;
-	chmod 750 ~/$MYHOME/gf_script_update.sh;
+	chmod 750 $MYHOME/gf_script_update.sh;
 	cp -rv $MYHOME/gf_script_update.sh ~/Documents/google_font_tracker/;
 	cp -rv ~/Downloads/temp_font/master.zip ~/Documents/google_font_tracker/;
 	printf "\n alright time to schedule that cronjob";
@@ -37,4 +37,3 @@ elif [ "$FONT_ANSWER" == "n" ] || [ "$FONT_ANSWER" == "no" ] || [ "$FONT_ANSWER"
 else	
 	printf "\n I broke";	
 fi
-#  unzip -l ~/Documents/google_font_tracker/master.zip | grep .ttf -c
