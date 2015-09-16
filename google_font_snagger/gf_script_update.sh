@@ -9,7 +9,7 @@ CHKINIT="`unzip -l ~/Documents/google_font_tracker/master.zip | grep .ttf -c`";
 CHKNEW="`unzip -l ~/Documents/google_font_tracker/new_one/master.zip | grep .ttf -c`";
 echo "$CHKINIT";
 echo "$CHKNEW";
-
+# should probably refactor to use md5sum
 if [ "$CHKINIT" == "$CHKNEW" ]; then
 	printf "It looks like there isn't any new files";
 	printf "\n deleting the downloaded master.zip cuz there isn't anything new\n and to save space";
