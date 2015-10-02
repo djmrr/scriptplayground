@@ -13,10 +13,11 @@ echo "$CHKNEW";
 if [ "$CHKINIT" == "$CHKNEW" ]; then
 	printf "It looks like there isn't any new files";
 	printf "\n deleting the downloaded master.zip cuz there isn't anything new\n and to save space";
-	rm ~/Documents/google_font_tracker/new_one/master.zip;	
+	rm ~/Documents/google_font_tracker/new_one/master.zip;
 elif [ "$CHKNEW" gt "$CHKINIT" ]; then
+	echo "some stuff";
 	printf "looks like we got some new fonts hommie\n lets get this copyd ovah";
-	cd new_one; 
+	cd new_one;
 	unzip master.zip;
 	cd ~/Libarary/Fonts;
 	cp -rv $(find ~/Documents/google_font_tracker/new_one/* | grep .ttf) .;
