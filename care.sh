@@ -1,6 +1,6 @@
 HERE="/home/cranium/bin/"; cd $HERE; touch care.sh && chmod 777 care.sh; vi care.sh;
 # care.sh
-FIND_CHEESE="/home/cranium/bin/fucks_give.flag";
+FIND_CHEESE="/home/cranium/bin/cheese_give.flag";
 if [ -f $FIND_CHEESE ]; then
 	echo "$(date) found it" >> '/home/cranium/bin/fux.txt' && echo "found";
 else
